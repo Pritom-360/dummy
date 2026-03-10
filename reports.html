@@ -1,0 +1,58 @@
+<!-- reports.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Garage ERP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo"><i class="fa-solid fa-wrench"></i><span class="logo-text">Garage ERP</span></div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fa-solid fa-chart-line"></i> <span class="menu-text">Dashboard</span></a></li>
+            <li><a href="customers.html"><i class="fa-solid fa-users"></i> <span class="menu-text">Customers</span></a></li>
+            <li><a href="work-orders.html"><i class="fa-solid fa-clipboard-list"></i> <span class="menu-text">Work Orders</span></a></li>
+            <li><a href="inventory.html"><i class="fa-solid fa-boxes-stacked"></i> <span class="menu-text">Inventory</span></a></li>
+            <li><a href="billing.html"><i class="fa-solid fa-file-invoice-dollar"></i> <span class="menu-text">Billing</span></a></li>
+            <li><a href="reports.html" class="active"><i class="fa-solid fa-chart-pie"></i> <span class="menu-text">Reports</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="main-wrapper" id="main-wrapper">
+        <header class="top-nav">
+            <div class="nav-left"><button id="sidebar-toggle"><i class="fa-solid fa-bars"></i></button></div>
+        </header>
+
+        <div class="content-area">
+            <div class="page-header">
+                <h2>Analytics & Reports</h2>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card" style="grid-column: 1 / -1;">
+                    <h3>Monthly Revenue Over Time</h3>
+                    <canvas id="monthlyRevenueChart" style="max-height: 300px;"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Worker Performance (Jobs Completed)</h3>
+                    <canvas id="workerPerformanceChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Inventory Usage Top 5 Parts</h3>
+                    <canvas id="inventoryUsageChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/reports.js"></script>
+</body>
+</html>
