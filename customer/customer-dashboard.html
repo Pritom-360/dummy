@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Garage ERP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/customer-style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo"><i class="fa-solid fa-wrench"></i> <span>Garage ERP</span></div>
+        <ul class="sidebar-menu">
+            <li><a href="customer-dashboard.html" class="active"><i class="fa-solid fa-house-user"></i> Dashboard</a></li>
+            <li><a href="service-booking.html"><i class="fa-solid fa-calendar-check"></i> Service Booking</a></li>
+            <li><a href="invoices-payments.html"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices & Payments</a></li>
+            <li><a href="customer-reports.html"><i class="fa-solid fa-chart-bar"></i> Reports & History</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="top-nav">
+            <div class="nav-left">
+                <button id="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="vehicle-info"><i class="fa-solid fa-car"></i> Toyota Corolla (GA-12-3456)</div>
+            </div>
+            <div class="nav-right">
+                <div class="bell-icon" onclick="Swal.fire('Notification', 'Your service (WO-2041) is completed and ready for pickup.', 'info')">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="bell-badge">1</span>
+                </div>
+                <span class="customer-name">Rahim Uddin</span>
+                <i class="fa-solid fa-circle-user fa-xl" style="color:var(--primary-color);"></i>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <h2 style="margin-bottom: 25px;">Welcome back, Rahim!</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <div class="stat-details"><h3>Pending Work Orders</h3><p>1</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color:#3B82F6; background:#DBEAFE;"><i class="fa-regular fa-calendar-days"></i></div>
+                    <div class="stat-details"><h3>Upcoming Appointment</h3><p>Oct 28</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color:#EF4444; background:#FEE2E2;"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="stat-details"><h3>Payment Status</h3><p style="color:#EF4444; font-size:1.1rem;">1 Unpaid</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color:#10B981; background:#D1FAE5;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="stat-details"><h3>Last Service</h3><p style="font-size:1.1rem;">Aug 15, 2023</p></div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3><i class="fa-solid fa-bullhorn"></i> Important Alerts</h3>
+                <p style="margin-top: 10px; color: var(--text-light);">Your vehicle's engine tuning is currently <strong style="color:var(--accent-color);">In Progress</strong>. We will notify you via SMS once it is completed via our automated workflow.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating AI Chat Widget -->
+    <div class="ai-chat-btn" id="aiChatBtn"><i class="fa-solid fa-robot"></i></div>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <span><i class="fa-solid fa-robot"></i> Garage AI Assistant</span>
+            <i class="fa-solid fa-xmark" id="closeChat" style="cursor:pointer;"></i>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg msg-ai">Hello Rahim! How can I help you with your Toyota Corolla today?</div>
+        </div>
+        <div class="chat-faq">
+            <div class="faq-chip" onclick="document.getElementById('chatInput').value='Check service status'">Check status</div>
+            <div class="faq-chip" onclick="document.getElementById('chatInput').value='Book appointment'">Book appointment</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask a question...">
+            <button style="border:none; background:none; color:var(--accent-color); font-size:1.2rem; cursor:pointer;" onclick="sendAiMsg()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/customer-app.js"></script>
+<script>
+    function sendAiMsg() {
+        const input = document.getElementById('chatInput');
+        const body = document.getElementById('chatBody');
+        if(!input.value) return;
+        
+        // Add User message
+        body.innerHTML += `<div class="chat-msg msg-user">${input.value}</div>`;
+        const val = input.value;
+        input.value = '';
+        body.scrollTop = body.scrollHeight;
+
+        // Mock AI Response
+        setTimeout(() => {
+            let reply = "I can help with that. Let me connect you with our service desk.";
+            if(val.toLowerCase().includes("status")) reply = "Your vehicle is currently in the 'In Progress' stage. Worker assigned: Mike Johnson.";
+            if(val.toLowerCase().includes("book")) reply = "You can book an appointment from the 'Service Booking' tab on your left!";
+            
+            body.innerHTML += `<div class="chat-msg msg-ai">${reply}</div>`;
+            body.scrollTop = body.scrollHeight;
+        }, 800);
+    }
+</script>
+</body>
+</html>

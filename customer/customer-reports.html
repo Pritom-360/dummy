@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Garage ERP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/customer-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo"><i class="fa-solid fa-wrench"></i> <span>Garage ERP</span></div>
+        <ul class="sidebar-menu">
+            <li><a href="customer-dashboard.html"><i class="fa-solid fa-house-user"></i> Dashboard</a></li>
+            <li><a href="service-booking.html"><i class="fa-solid fa-calendar-check"></i> Service Booking</a></li>
+            <li><a href="invoices-payments.html"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices & Payments</a></li>
+            <li><a href="customer-reports.html" class="active"><i class="fa-solid fa-chart-bar"></i> Reports & History</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="top-nav">
+            <div class="nav-left"><button id="sidebar-toggle"><i class="fa-solid fa-bars"></i></button></div>
+        </header>
+
+        <div class="content-area">
+            <h2 style="margin-bottom: 25px;">Vehicle Analytics</h2>
+            
+            <!-- AI Suggestion Block -->
+            <div class="content-card" style="margin-bottom: 25px; border-left: 4px solid var(--accent-color);">
+                <h3 style="color: var(--accent-color);"><i class="fa-solid fa-lightbulb"></i> Predictive Maintenance Suggestion</h3>
+                <p style="margin-top:10px;">Based on your service frequency and last visit, we recommend scheduling a <strong>Synthetic Oil Change</strong> before <span style="font-weight:bold; color:var(--primary-color);">November 15, 2023</span> to maintain optimal engine health.</p>
+                <a href="service-booking.html" class="btn-primary" style="display:inline-block; margin-top: 15px; text-decoration:none; padding:8px 15px; font-size:0.9rem;">Book Now</a>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Monthly Spending (৳)</h3>
+                    <canvas id="spendingChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Service Type Frequency</h3>
+                    <canvas id="frequencyChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/customer-app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Spending Chart
+        const spendCtx = document.getElementById('spendingChart').getContext('2d');
+        new Chart(spendCtx, {
+            type: 'line',
+            data: {
+                labels:['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                datasets:[{
+                    label: 'Amount (৳)',
+                    data:[0, 5000, 0, 2100, 0, 4500],
+                    borderColor: '#F97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            }
+        });
+
+        // Frequency Chart
+        const freqCtx = document.getElementById('frequencyChart').getContext('2d');
+        new Chart(freqCtx, {
+            type: 'doughnut',
+            data: {
+                labels:['Oil Change', 'Brake Pad', 'Engine Tuning', 'Wash'],
+                datasets: [{
+                    data:[3, 1, 1, 5],
+                    backgroundColor:['#1F2933', '#F97316', '#10B981', '#3B82F6']
+                }]
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login - Garage ERP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/customer-style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-logo"><i class="fa-solid fa-car-side"></i><br><span style="font-weight:700; color:var(--primary-color);">Garage ERP Portal</span></div>
+            <form action="customer-dashboard.html">
+                <div class="form-group">
+                    <label>Mobile Number / Email</label>
+                    <input type="text" class="form-control" placeholder="017XX-XXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Model (Optional - for Registration)</label>
+                    <input type="text" class="form-control" placeholder="e.g. Toyota Corolla">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem; padding: 12px; margin-top: 10px;">Login / Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

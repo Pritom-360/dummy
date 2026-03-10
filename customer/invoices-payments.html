@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices & Payments - Garage ERP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/customer-style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo"><i class="fa-solid fa-wrench"></i> <span>Garage ERP</span></div>
+        <ul class="sidebar-menu">
+            <li><a href="customer-dashboard.html"><i class="fa-solid fa-house-user"></i> Dashboard</a></li>
+            <li><a href="service-booking.html"><i class="fa-solid fa-calendar-check"></i> Service Booking</a></li>
+            <li><a href="invoices-payments.html" class="active"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices & Payments</a></li>
+            <li><a href="customer-reports.html"><i class="fa-solid fa-chart-bar"></i> Reports & History</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="top-nav">
+            <div class="nav-left"><button id="sidebar-toggle"><i class="fa-solid fa-bars"></i></button></div>
+        </header>
+
+        <div class="content-area">
+            <h2 style="margin-bottom: 25px;">My Invoices</h2>
+            
+            <div class="content-card">
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Service/Work Order</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action/Pay</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>INV-2045</td>
+                                <td>Engine Tuning (WO-2041)</td>
+                                <td>Oct 24, 2023</td>
+                                <td>৳ 4,500</td>
+                                <td><span style="background: #FEE2E2; color: var(--danger); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">UNPAID</span></td>
+                                <td>
+                                    <!-- Local Payment Methods -->
+                                    <button class="payment-btn btn-bkash" onclick="initiatePayment('bKash', '৳ 4,500', 'INV-2045')"><i class="fa-solid fa-b"></i> bKash</button>
+                                    <button class="payment-btn btn-nagad" onclick="initiatePayment('Nagad', '৳ 4,500', 'INV-2045')"><i class="fa-solid fa-n"></i> Nagad</button>
+                                    <button class="payment-btn btn-card" onclick="initiatePayment('Card', '৳ 4,500', 'INV-2045')"><i class="fa-regular fa-credit-card"></i> Card</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>INV-1902</td>
+                                <td>Oil & Filter Change</td>
+                                <td>Aug 15, 2023</td>
+                                <td>৳ 2,100</td>
+                                <td><span style="background: #D1FAE5; color: var(--success); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">PAID</span></td>
+                                <td>
+                                    <!-- PDF Download (simulated) -->
+                                    <button class="btn-primary" style="padding: 5px 10px; font-size: 0.8rem; background: #6B7280;" onclick="Swal.fire('Downloading...', 'Your PDF is generating.', 'success')"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/customer-app.js"></script>
+</body>
+</html>

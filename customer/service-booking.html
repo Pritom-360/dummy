@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Booking - Garage ERP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/customer-style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo"><i class="fa-solid fa-wrench"></i> <span>Garage ERP</span></div>
+        <ul class="sidebar-menu">
+            <li><a href="customer-dashboard.html"><i class="fa-solid fa-house-user"></i> Dashboard</a></li>
+            <li><a href="service-booking.html" class="active"><i class="fa-solid fa-calendar-check"></i> Service Booking</a></li>
+            <li><a href="invoices-payments.html"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices & Payments</a></li>
+            <li><a href="customer-reports.html"><i class="fa-solid fa-chart-bar"></i> Reports & History</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="top-nav">
+            <div class="nav-left"><button id="sidebar-toggle"><i class="fa-solid fa-bars"></i></button></div>
+        </header>
+
+        <div class="content-area">
+            <h2 style="margin-bottom: 25px;">Book a Service</h2>
+            
+            <div class="content-card" style="max-width: 600px;">
+                <form id="bookingForm" onsubmit="event.preventDefault(); submitBooking();">
+                    <div class="form-group">
+                        <label>Preferred Date & Time</label>
+                        <input type="datetime-local" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Problem Description (Be specific)</label>
+                        <textarea id="problemDesc" class="form-control" rows="4" placeholder="e.g., Squeaking noise when applying brakes..." required></textarea>
+                    </div>
+
+                    <!-- AI Magic Integration Box -->
+                    <div class="ai-suggestion-box" id="aiBox">
+                        <h4><i class="fa-solid fa-wand-magic-sparkles"></i> AI Service Recommendation</h4>
+                        <p id="aiText" style="font-size: 0.9rem; color: #374151;"></p>
+                        <hr style="border:0; border-top:1px solid #BFDBFE; margin: 10px 0;">
+                        <p style="font-size: 0.85rem; font-weight:600;"><i class="fa-solid fa-user-gear"></i> Recommended Specialist: <span id="aiWorker" style="color:var(--accent-color);">Rahim (Brake Specialist)</span></p>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="margin-top: 20px;"><i class="fa-solid fa-calendar-plus"></i> Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/customer-app.js"></script>
+<script>
+    // Mock Gemini API Integration behavior
+    document.getElementById('problemDesc').addEventListener('blur', function() {
+        const val = this.value.toLowerCase();
+        const aiBox = document.getElementById('aiBox');
+        const aiText = document.getElementById('aiText');
+        const aiWorker = document.getElementById('aiWorker');
+
+        if(val.length > 10) {
+            aiBox.style.display = 'block';
+            if(val.includes('brake') || val.includes('squeak')) {
+                aiText.innerText = "Based on your description, it sounds like your brake pads need inspection or replacement.";
+                aiWorker.innerText = "Rahim (Brake Specialist)";
+            } else if(val.includes('engine') || val.includes('start')) {
+                aiText.innerText = "This indicates a potential battery, starter, or spark plug issue. A diagnostic scan is recommended.";
+                aiWorker.innerText = "David (Engine Technician)";
+            } else {
+                aiText.innerText = "General inspection required to accurately identify the root cause of this issue.";
+                aiWorker.innerText = "Mike (General Mechanic)";
+            }
+        } else {
+            aiBox.style.display = 'none';
+        }
+    });
+
+    function submitBooking() {
+        Swal.fire('Booking Confirmed', 'Your appointment has been logged. The AI recommended specialist will be assigned.', 'success');
+    }
+</script>
+</body>
+</html>
